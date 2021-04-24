@@ -1,0 +1,91 @@
+swagger: '2.0'
+
+info:
+  title: YOUTUBE API
+
+host: localhost:9000
+basePath: /jarvis
+schemes:
+  - http
+
+produces:
+  - application/json
+  
+paths:
+  /v1/videos:
+    get:
+      operationId: getVideos
+      tags:
+        - Videos
+      responses:
+        200:
+          description: An array of videos.
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Video'
+        400:
+          description: Invalid request sent.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        404:
+          description: Filter not found.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /v1/search:
+    get:
+      operationId: searchVideos
+      tags:
+        - Videos
+      parameters:
+        - name: keyword
+          in: query
+          required: true
+          type: string
+      responses:
+        200:
+          description: An array of videos.
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Video'
+        400:
+          description: Invalid request sent.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        404:
+          description: Filter not found.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+
+  
+definitions:
+
+  Video:
+    type: object
+    description: Representation of a Video.
+    required:
+      - id
+      - title
+    properties:
+      id:
+        type: string
+        description: Unique identifier of the video.
+      title:
+        type: string
+      description:
+        type: string
+      publishingDate:
+        type: string
+      thumbnailURI:
+        type: string
+    
+  ErrorResponse:
+    type: object
+    properties:
+      error:
+        type: string
+        description: A short reason phrase describing the status.
+      message:
+        type: string
+        description: A descriptive message explaining the error.
