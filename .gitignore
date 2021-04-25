@@ -33,4 +33,4 @@ build/
 .vscode/
 .swagger-codegen-ignore
 .swagger-codegen
-.
+.DS_Store

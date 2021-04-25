@@ -3,31 +3,32 @@
  * https://github.com/swagger-api/swagger-codegen
  * Do not edit the class manually.
  */
-package com.example.youtube.api.model;
+package com.example.youtube.repository.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Objects;
 
+@Entity(name = "Video")
+@Table(name = "video")
+public class Video  {
 
-public class Video implements Serializable {
-
-  private static final long serialVersionUID = 1L;
-
-  @JsonProperty("id")
+  @Id
+  @Column(name = "id",unique = true,nullable = false,updatable = false)
   private String id = null;
 
-  @JsonProperty("title")
+  @Column(name = "title", nullable = false)
   private String title = null;
 
-  @JsonProperty("description")
+  @Column(name = "description")
   private String description = null;
 
-  @JsonProperty("publishingDate")
+  @Column(name = "publish")
   private String publishingDate = null;
 
-  @JsonProperty("thumbnailURI")
+  @Column(name = "thumbnail")
   private String thumbnailURI = null;
 
 
